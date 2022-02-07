@@ -243,11 +243,21 @@ body{
     margin-bottom: 20px;
 }
 
+.credito{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    color: black;
+    padding-bottom: 30px;
+    margin-left: 40px;
+    font-size: 16px;
+}
+
 #hidden{
     display: none;
 }
 
 .fadeOut {
 	opacity:0;
-	transition:0.5s;
+	transition:1.0s;
 }

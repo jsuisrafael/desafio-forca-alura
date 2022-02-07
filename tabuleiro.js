@@ -2,19 +2,21 @@ let iniciaBotao = document.querySelector("#btn-cripto");
 iniciaBotao.addEventListener("click", function(event){
     event.preventDefault();
 
+    var tocaMusicaInicio = TocarMusicaInicio();
+
     var escondeImagem = document.querySelector(".img-gif");
 
     escondeImagem.classList.add("fadeOut")
 
     setTimeout(function(){
         escondeImagem.remove();
-    }, 500);
+    }, 1000);
 
     iniciaBotao.classList.add("fadeOut");
 
     setTimeout(function(){
         let iniciaJogo = showMe();
-    }, 500);
+    }, 1000);
 });
 
 let tentativas = 6;
@@ -57,7 +59,7 @@ const palavras = [
         categoria: "PAÍSES"
     },
     palavra009={
-        nome:"BURKINA FASO",
+        nome:"BOTSWANA",
         categoria: "PAÍSES"
     },
     palavra010={
@@ -149,7 +151,7 @@ const palavras = [
         categoria: "ITENS DE CASA"
     },
     palavra032={
-        nome:"GUARDA-ROUPA",
+        nome:"ESPELHO",
         categoria: "ITENS DE CASA"
     },
     palavra033={
@@ -189,7 +191,7 @@ const palavras = [
         categoria: "TIMES DE FUTEBOL"
     },
     palavra042={
-        nome:"ATLETICO MINEIRO",
+        nome:"NOVORIZONTINO",
         categoria: "TIMES DE FUTEBOL"
     },
     palavra043={
@@ -317,14 +319,22 @@ function mudarStyleLetra(tecla){
 
 function comparaListas(letra) {
     const pos = palavraSecretaSorteada.indexOf(letra);
+
+    if(pos > 0){
+        TocarMusicaAcerto();
+    }
+
     if(pos < 0){
         tentativas--
+        TocarMusicaErro();
         carregaImagemForca();
+    }
 
     if(tentativas==0){
+        TocarMusicaFim();
         abreModal("OPS!", "Não foi dessa vez... A palavra secreta era <br>" + palavraSecretaSorteada);
     }
-}
+
     else{
         for(i = 0; i<palavraSecretaSorteada.length; i++){
             if (palavraSecretaSorteada[i] == letra){
@@ -342,6 +352,7 @@ function comparaListas(letra) {
 
     if (vitoria == true) {
         abreModal("PARABÉNS!", "Você venceu!");
+        TocarMusicaVitoria();
         tentativas = 0;
     }
 }
@@ -404,3 +415,42 @@ function showMe() {
          escondeJogo.style.display = 'none';
     }
  }
+
+ function TocarMusicaInicio(){
+    var audio1 = new Audio();
+    audio1.src = "sons/mario_inicio.mp3";
+    audio1.play();
+    audio1.loop = false;
+}
+
+function TocarMusicaFim(){
+    var audio1 = new Audio();
+    audio1.src = "sons/faustao_errou.mp3";
+    audio1.play();
+    audio1.loop = false;
+}
+
+function TocarMusicaAcerto(){
+    var audio1 = new Audio();
+    audio1.src = "sons/som_acerto.mp3";
+    audio1.play();
+    audio1.loop = false;
+}
+
+function TocarMusicaErro(){
+    var audio1 = new Audio();
+    audio1.src = "sons/zapsplat_erro_tentativa.mp3";
+    audio1.play();
+    audio1.loop = false;
+}
+
+function TocarMusicaVitoria(){
+    var audio1 = new Audio();
+    audio1.src = "sons/vitoria_sf.mp3";
+    audio1.play();
+    audio1.loop = false;
+}
+
+
+
+
