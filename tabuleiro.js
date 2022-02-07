@@ -2,6 +2,19 @@ let iniciaBotao = document.querySelector("#btn-cripto");
 iniciaBotao.addEventListener("click", function(event){
     event.preventDefault();
 
+    var escondeImagem = document.querySelector(".img-gif");
+
+    escondeImagem.classList.add("fadeOut")
+
+    setTimeout(function(){
+        escondeImagem.remove();
+    }, 500);
+
+    iniciaBotao.classList.add("fadeOut");
+
+    setTimeout(function(){
+        let iniciaJogo = showMe();
+    }, 500);
 });
 
 let tentativas = 6;
@@ -380,3 +393,14 @@ let reiniciaBotao = document.getElementById("btn-reinicia");
 reiniciaBotao.addEventListener("click", function(){
 location.reload();
 });
+
+function showMe() {
+    var escondeJogo = document.getElementById('hidden');
+ 
+    if(escondeJogo.style.display == '' || escondeJogo.style.display == 'none'){
+         escondeJogo.style.display = 'block';
+    }
+    else {
+         escondeJogo.style.display = 'none';
+    }
+ }
