@@ -400,9 +400,10 @@ function abreModal(titulo, mensagem){
     });
 }
 
+
 let reiniciaBotao = document.getElementById("btn-reinicia");
 reiniciaBotao.addEventListener("click", function(){
-location.reload();
+    location.reload();
 });
 
 function showMe() {
@@ -450,7 +451,6 @@ function TocarMusicaVitoria(){
     audio1.play();
     audio1.loop = false;
 }
-
 
 
 
